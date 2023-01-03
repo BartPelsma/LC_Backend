@@ -1,4 +1,4 @@
-name: SonarCloud
+name: Pipeline
 on:
   push:
     branches:
@@ -6,6 +6,34 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
+
+  docker:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 'Authentication'
+    steps:
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: bartpelsma 
+          password: dockertest
+      -
+        name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          file: ./LC_Backend/Dockerfile
+          push: true
+          tags: livechat-backend/my-image:latest
+          
   build:
     name: Build and analyze
     runs-on: windows-latest
