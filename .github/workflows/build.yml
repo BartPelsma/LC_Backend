@@ -32,7 +32,7 @@ jobs:
         with:
           file: ./LC_Backend/Dockerfile
           push: true
-          tags: bartpelsma/chat-backend:latest
+          tags: bartpelsma/lcbackend:latest
           
   build:
     name: Build and analyze
