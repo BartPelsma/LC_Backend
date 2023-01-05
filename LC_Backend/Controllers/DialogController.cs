@@ -26,19 +26,19 @@ namespace LC_Backend.Controllers
         {
             try
             {
-                //if (contactedAccount == null)
-                //{
-                //    return BadRequest("Missing_Accounts");
-                //}
+                if (contactedAccount == null || contactedAccount.AccountID == 0)
+                {
+                    return BadRequest("Missing_Contacted_Account");
+                }
 
                 //Check Token
-                var url = $"https://localhost:7015/";
+                var url = $"http://localhost:7015/";
                 var client = new RestClient(url);
                 var request = new RestRequest($"Account/CheckToken?token={token}", Method.Post) { RequestFormat = DataFormat.Json };
                 RestResponse response = client.Execute(request);
                 if(response.StatusCode.ToString() == "BadRequest")
                 {
-                    return BadRequest(response.Content.ToString());
+                    return BadRequest("Token_Expired_Or_Not_Valid");
                 }
 
                 //Get Account and Token
@@ -76,13 +76,13 @@ namespace LC_Backend.Controllers
             try
             {
                 //Check Token
-                var url = $"https://localhost:7015/";
+                var url = $"http://localhost:7015/";
                 var client = new RestClient(url);
                 var request = new RestRequest($"Account/CheckToken?token={token}", Method.Post) { RequestFormat = DataFormat.Json };
                 RestResponse response = client.Execute(request);
                 if (response.StatusCode.ToString() == "BadRequest")
                 {
-                    return BadRequest(response.Content.ToString());
+                    return BadRequest("Token_Expired_Or_Not_Valid");
                 }
 
                 //Get Account and Token

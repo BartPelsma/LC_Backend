@@ -7,6 +7,6 @@
         public string DialogName { get; set; } = string.Empty;
         public string Status { get; set; } = string.Empty;
         public DateTime CreationDate { get; set; }
-
+        public List<Message> Messages { get; set; } = new List<Message>();
     }
 }
