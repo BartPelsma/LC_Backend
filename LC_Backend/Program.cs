@@ -1,11 +1,13 @@
 using LC_Backend.Context;
 using Microsoft.EntityFrameworkCore;
+using LC_Backend;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddHostedService<WebSocketService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -34,6 +36,8 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseCors("CorsPolicy");
+
+app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

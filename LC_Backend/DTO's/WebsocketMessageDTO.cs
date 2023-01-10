@@ -2,7 +2,5 @@
 
 public class WebsocketMessageDTO
 {
-    public string content;
-    public string sendTime;
-    public bool isSender;
+    public string message;
 }

@@ -2,7 +2,7 @@
 using LC_Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using static LC_Backend.websocketservice;
+using static LC_Backend.WebSocketService;
 
 namespace LC_Backend.Controllers;
 
@@ -22,8 +22,6 @@ public class WebSocketController : ControllerBase
         Dialog dialog = new Dialog();
         WebSocketService.Dialogs.Add(dialog);
 
-        WebSocketService.Wssv.AddWebSocketService<RecieveChat1>($"/Customer-{WebSocketService.Dialogs.Count}");
-        WebSocketService.Wssv.AddWebSocketService<RecieveChat2>($"/Worker-{WebSocketService.Dialogs.Count}");
         return WebSocketService.Dialogs.Count;
     }
 }

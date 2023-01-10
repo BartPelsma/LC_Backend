@@ -6,7 +6,7 @@
         public virtual Account Account2 { get; set; } = new Account();
         public string DialogName { get; set; } = string.Empty;
         public string Status { get; set; } = string.Empty;
-        public DateTime CreationDate { get; set; }
+        public DateTime CreationDate { get; set; } = new DateTime();
         public List<Message> Messages { get; set; } = new List<Message>();
     }
 }

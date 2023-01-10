@@ -1,10 +1,13 @@
 ﻿using LC_Backend.Containers;
 using LC_Backend.Context;
+using LC_Backend.DTOS;
 using LC_Backend.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RestSharp;
+using WebSocketSharp;
+using WebSocketSharp.Server;
 
 namespace LC_Backend.Controllers
 {
@@ -108,5 +111,39 @@ namespace LC_Backend.Controllers
                 return BadRequest("Error_While_Saving_Dialog");
             }
         }
+
+        //public class RecieveMessageChat1 : WebSocketBehavior
+        //{
+        //    protected override void OnMessage(MessageEventArgs e)
+        //    {
+        //        WebsocketMessageDTO message = JsonConvert.DeserializeObject<WebsocketMessageDTO>(e.Data);
+        //        if (message.content == "__ping__")
+        //        {
+        //            return;
+        //        }
+
+        //        message.isSender = false;
+
+        //        Sessions.Broadcast(JsonConvert.SerializeObject(message));
+        //        Console.WriteLine("recieved message from customer: " + message.content);
+        //    }
+        //}
+
+
+        //public class RecieveMessageChat2 : WebSocketBehavior
+        //{
+        //    protected override void OnMessage(MessageEventArgs e)
+        //    {
+        //        WebsocketMessageDTO message = JsonConvert.DeserializeObject<WebsocketMessageDTO>(e.Data);
+        //        if (message.content == "__ping__")
+        //        {
+        //            return;
+        //        }
+
+        //        message.isSender = false;
+        //        Sessions.Broadcast(JsonConvert.SerializeObject(message));
+        //        Console.WriteLine("recieved message from worker: " + message.content);
+        //    }
+        //}
     }
 }
